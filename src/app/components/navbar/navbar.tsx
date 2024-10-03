@@ -15,7 +15,16 @@ export default function NavBar() {
             alt=""
           />
         </Link>
-        <div>Seasonal Anime</div>
+        <Link href="../season">
+          <p className="transition-transform duration-300 hover:underline hover:underline-offset-4 hover:-translate-y-1">
+            Top Anime
+          </p>
+        </Link>
+        <Link href="../season">
+          <p className="transition-transform duration-300 hover:underline hover:underline-offset-4 hover:-translate-y-1">
+            Seasonal Anime
+          </p>
+        </Link>
       </div>
       <div>
         <Link href={"../login"}>Login</Link>
