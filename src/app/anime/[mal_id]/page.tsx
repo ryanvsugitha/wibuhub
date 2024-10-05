@@ -34,7 +34,6 @@ export default async function AnimeDetail({
 
   return (
     <>
-      <NavBar />
       <div className="flex flex-row gap-3 items-start">
         <Image
           className="object-contain"
