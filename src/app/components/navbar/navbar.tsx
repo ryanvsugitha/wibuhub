@@ -6,8 +6,8 @@ import { Input } from "@/components/ui/input";
 export default function NavBar() {
   return (
     <>
-      <div className="bg-cyan-600 flex flex-row items-center justify-between p-1 gap-3">
-        <div className="flex flex-row items-center gap-3 w-full">
+      <div className="bg-cyan-600 flex flex-row items-center justify-between p-1 px-5 gap-3 text-base">
+        <div className="flex flex-row items-center gap-5 w-full">
           <Link href="../">
             <Image
               className="object-contain"
@@ -27,7 +27,9 @@ export default function NavBar() {
               Seasonal Anime
             </p>
           </Link>
-          <Input />
+          <div>
+            <Input />
+          </div>
         </div>
         <div>
           <Link href={"../login"}>Login</Link>
