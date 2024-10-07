@@ -1,4 +1,3 @@
-import NavBar from "@/app/components/navbar/navbar";
 import Image from "next/image";
 
 async function getAnimeByID(mal_id: string) {
@@ -69,7 +68,7 @@ export default async function AnimeDetail({
               <p className="text-lg font-bold">Characters</p>
               <div className="grid">
                 {characterData.data.map((char: any) => (
-                  <div>{char.character.name}</div>
+                  <div key={char}>{char.character.name}</div>
                 ))}
               </div>
             </div>

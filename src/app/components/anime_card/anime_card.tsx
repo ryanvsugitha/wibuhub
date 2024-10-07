@@ -12,11 +12,11 @@ interface AnimeCardProps {
 
 const AnimeCard: React.FC<AnimeCardProps> = ({ item }) => {
   return (
-    <Link href={"../../anime/43608"}>
+    <Link href={"../../anime/" + item.mal_id}>
       <Card className="hover:bg-violet-100 transition ease-in-out duration-300 h-full">
-        <div className="flex flex-row gap-3 p-3 h-full">
+        <div className="flex flex-row gap-3 h-full">
           <Image
-            className="rounded-sm"
+            className="rounded-lg"
             src={item.images.webp.image_url}
             height={0}
             width={120}
@@ -63,16 +63,3 @@ const AnimeCard: React.FC<AnimeCardProps> = ({ item }) => {
 };
 
 export default AnimeCard;
-// export default function AnimeCard(synopsis: string) {
-//   const asas =
-//     "The elite members of Shuchiin Academy's student council continue their competitive day-to-day antics. Council president Miyuki Shirogane clashes daily against vice-president Kaguya Shinomiya, each fighting tooth and nail to trick the other into confessing their romantic love. Kaguya struggles within the strict confines of her wealthy, uptight family, rebelling against her cold default demeanor as she warms to Shirogane and the rest of her friends.\n\nMeanwhile, council treasurer Yuu Ishigami suffers under the weight of his hopeless crush on Tsubame Koyasu, a popular upperclassman who helps to instill a new confidence in him. Miko Iino, the newest student council member, grows closer to the rule-breaking Ishigami while striving to overcome her own authoritarian moral code.\n\nAs love further blooms at Shuchiin Academy, the student council officers drag their outsider friends into increasingly comedic conflicts.\n\n[Written by MAL Rewrite]";
-
-//   const anime_title_english = "This is Anime Title English";
-//   const anime_title_japanese = "This is Anime Title Japanese";
-//   const studio = "Anime Studio";
-//   const rating = 3.71;
-
-//   const genre = ["Horror", "Comedy", "Drama"];
-
-//   return <></>;
-// }
