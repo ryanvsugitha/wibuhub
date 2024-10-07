@@ -6,7 +6,7 @@ import Link from "next/link";
 import Logo from "@/app/assets/wibuhub_logo.svg";
 
 export default async function Register() {
-  let username_error = ""
+  const username_error = ""
 
   return (
     <> 
