@@ -27,9 +27,9 @@ export default function NavBar() {
               Seasonal Anime
             </p>
           </Link>
-          <div>
+          {/* <div>
             <Input />
-          </div>
+          </div> */}
         </div>
         <div>
           <Link href={"../login"}>Login</Link>

@@ -1,6 +1,5 @@
 "use client";
 
-import { Button, Paper, PasswordInput, Text, TextInput } from "@mantine/core";
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "@/app/assets/wibuhub_logo.svg";
@@ -9,7 +8,7 @@ export default function Login() {
   return (
     <> 
       <div className="flex justify-center items-center min-h-screen w-full">
-        <Paper shadow="sm" withBorder p="xl" className="w-1/4">
+        {/* <Paper shadow="sm" withBorder p="xl" className="w-1/4">
           <div className="flex flex-col gap-3 items-center ">
             <Image
               className="object-contain"
@@ -30,7 +29,7 @@ export default function Login() {
               Login
             </Button>
           </div>
-        </Paper>
+        </Paper> */}
       </div>
     </>
   );

@@ -14,7 +14,7 @@ const AnimeCard: React.FC<AnimeCardProps> = ({ item }) => {
   return (
     <Link href={"../../anime/" + item.mal_id}>
       <Card className="hover:bg-violet-100 transition ease-in-out duration-300 h-full">
-        <div className="flex flex-row gap-3 h-full">
+        <div className="flex flex-row h-full">
           <Image
             className="rounded-lg"
             src={item.images.webp.image_url}
@@ -22,7 +22,7 @@ const AnimeCard: React.FC<AnimeCardProps> = ({ item }) => {
             width={120}
             alt=""
           />
-          <div className="flex flex-col overflow-hidden flex-grow h-full">
+          <div className="flex flex-col overflow-hidden flex-grow h-full p-2">
             <p className="font-bold text-ellipsis truncate text-lg">
               {item.title_english}
             </p>
@@ -44,15 +44,17 @@ const AnimeCard: React.FC<AnimeCardProps> = ({ item }) => {
               <div className="flex flex-row gap-5">
                 <div className="flex flex-row gap-1 items-center">
                   <RatingStar />
-                  <p className="text-center">{item.score ? item.score: "N/A"}</p>
+                  <p className="text-center">
+                    {item.score ? item.score : "N/A"}
+                  </p>
                 </div>
-                <p>
+                <div className="flex flex-row">
                   {item.studios.map((data, index) => (
-                    <div key={index} className="">
+                    <p key={index} className="border rounded-sm px-1">
                       {data.name}
-                    </div>
+                    </p>
                   ))}
-                </p>
+                </div>
               </div>
             </div>
           </div>
