@@ -1,4 +1,4 @@
-export interface SeasonModel {
+export interface AnimeModel {
   pagination: Pagination;
   data: AnimeList[];
 }

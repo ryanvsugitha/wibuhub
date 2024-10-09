@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useEffect, useState } from "react";
-import { SeasonModel } from "../model/anime_model";
+import { AnimeModel } from "../model/anime_model";
 import AnimeCard from "../components/anime_card/anime_card";
 import { Button } from "@/components/ui/button";
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
@@ -27,12 +27,15 @@ function Season() {
   const [selected_season, set_selected_season] = useState("");
   const [selected_year, set_selected_year] = useState("");
 
+  const [temp_season, set_temp_season] = useState("");
+  const [temp_year, set_temp_year] = useState("");
+
   const [current_page, set_current_page] = useState(1);
   const [last_page, set_last_page] = useState(1);
 
   const [is_loaded, set_loaded] = useState(false);
 
-  const [anime_data, setData] = useState<SeasonModel>({
+  const [anime_data, setData] = useState<AnimeModel>({
     pagination: {
       last_visible_page: 0,
       has_next_page: false,
@@ -61,20 +64,20 @@ function Season() {
     "https://api.jikan.moe/v4/seasons/" +
     selected_year +
     "/" +
-    selected_season +
+    selected_season.toLowerCase() +
     "?page=" +
     current_page;
 
   useEffect(() => {
-    async function fetch_data() {
+    async function fetch_season_data() {
       const res = await fetch("https://api.jikan.moe/v4/seasons");
 
       const fetched_data = await res.json();
       set_season_data(fetched_data);
     }
 
-    fetch_data();
-  });
+    fetch_season_data();
+  }, []);
 
   useEffect(() => {
     async function fetch_data() {
@@ -105,32 +108,38 @@ function Season() {
 
     set_loaded(false);
     fetch_data();
-  }, [current_page, is_custom_season]);
+  }, [current_page, selected_season, selected_year]);
 
   function change_page(page_chosen: number) {
     set_current_page(page_chosen);
   }
 
   function change_season(value: string) {
-    set_selected_season(value);
+    set_temp_season(value);
   }
 
   function change_year(value: string) {
-    set_selected_year(value);
+    set_temp_year(value);
   }
 
   function change_to_custom_season() {
-    if (selected_season == "" || selected_year == "") {
+    if (temp_season == "" || temp_year == "") {
       toast({
         variant: "destructive",
         title: "Season and/or Year needed!",
         description: "Please select season and/or year!",
       });
     } else {
-      set_selected_season(selected_season);
-      set_selected_year(selected_year);
+      set_selected_season(temp_season);
+      set_selected_year(temp_year);
       set_custom_season(true);
     }
+  }
+
+  function change_to_now() {
+    set_selected_season("");
+    set_selected_year("");
+    set_custom_season(false);
   }
 
   const loading_skeleton = [1, 2, 3];
@@ -139,7 +148,9 @@ function Season() {
     <>
       <div className="flex flex-row items-center justify-between p-3 w-full">
         <p className="text-lg font-bold">
-          {is_custom_season ? "custom season" : "Current Season"}
+          {is_custom_season
+            ? selected_season + " " + selected_year
+            : "Current Season"}
         </p>
         <div className="flex flex-row gap-3">
           <Select onValueChange={change_season}>
@@ -147,10 +158,10 @@ function Season() {
               <SelectValue placeholder="Select Season" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="winter">Winter</SelectItem>
-              <SelectItem value="spring">Spring</SelectItem>
-              <SelectItem value="summer">Summer</SelectItem>
-              <SelectItem value="fall">Fall</SelectItem>
+              <SelectItem value="Winter">Winter</SelectItem>
+              <SelectItem value="Spring">Spring</SelectItem>
+              <SelectItem value="Summer">Summer</SelectItem>
+              <SelectItem value="Fall">Fall</SelectItem>
             </SelectContent>
           </Select>
           <Select onValueChange={change_year}>
@@ -168,7 +179,7 @@ function Season() {
           <Button variant={"outline"} onClick={() => change_to_custom_season()}>
             Go
           </Button>
-          <Button variant={"destructive"} onClick={() => {}}>
+          <Button variant={"destructive"} onClick={() => change_to_now()}>
             Reset
           </Button>
         </div>
@@ -189,6 +200,7 @@ function Season() {
               change_page(current_page - 1);
             }
           }}
+          disabled={current_page == 1}
         >
           <ChevronLeftIcon className="h-4 w-4" />
         </Button>
@@ -203,6 +215,7 @@ function Season() {
               change_page(current_page + 1);
             }
           }}
+          disabled={current_page == last_page}
         >
           <ChevronRightIcon className="h-4 w-4" />
         </Button>

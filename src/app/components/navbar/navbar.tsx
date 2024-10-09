@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 export default function NavBar() {
   return (
     <>
-      <div className="bg-cyan-600 flex flex-row items-center justify-between p-1 px-5 gap-3 text-base">
+      <div className="bg-gray-300 flex flex-row items-center justify-between p-1 px-5 gap-3 text-base">
         <div className="flex flex-row items-center gap-5 w-full">
           <Link href="../">
             <Image

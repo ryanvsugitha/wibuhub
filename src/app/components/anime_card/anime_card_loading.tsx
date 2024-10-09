@@ -2,8 +2,8 @@ import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 import React from "react";
-import RatingStar from "../rating_star/rating_star";
 import { Skeleton } from "@/components/ui/skeleton";
+import { StarIcon } from "@radix-ui/react-icons";
 
 const AnimeCardLoading = () => {
   return (
@@ -24,7 +24,7 @@ const AnimeCardLoading = () => {
             </div>
             <div className="flex flex-row gap-5">
               <div className="flex flex-row gap-1 items-center">
-                <RatingStar />-
+                <StarIcon/>
               </div>
               <Skeleton></Skeleton>
             </div>
