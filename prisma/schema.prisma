@@ -7,21 +7,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model user_credential {
-  user_name String @id @unique(map: "username") @db.VarChar(50)
-  password  String @db.VarChar(255)
+model credential {
+  username String @id @db.VarChar(50)
+  password String @db.VarChar(50)
+}
+
+model favorites {
+  username String @id @db.VarChar(50)
+  mal_id   String @db.VarChar(50)
 }
 
 model user_detail {
-  user_name String @id @db.VarChar(50)
-  user_dob  String @db.VarChar(50)
-}
-
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
-model user_favorite {
-  id        Int    @id @default(autoincrement())
-  user_name String @db.VarChar(50)
-  mal_id    String @db.VarChar(50)
-
-  @@ignore
+  username   String @id @db.VarChar(50)
+  user_email String @db.VarChar(50)
 }

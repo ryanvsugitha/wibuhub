@@ -3,7 +3,6 @@
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -14,8 +13,30 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/app/assets/wibuhub_logo.svg";
+import { useEffect, useState } from "react";
+
+type User = {
+  id: number;
+  username: string;
+  user_email: string;
+};
 
 export default function Login() {
+  const [users, setUsers] = useState<User[]>([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch("/api/users");
+        const data = await response.json();
+        setUsers(data);
+      } catch (error) {
+        console.error("Failed to fetch users:", error);
+      }
+    }
+    fetchData();
+  }, []);
+
   return (
     <div className="w-full h-screen flex justify-center items-center">
       <div className="p-5 sm:p-0 sm:w-[400px]">
@@ -61,6 +82,14 @@ export default function Login() {
             <Button>Login</Button>
           </CardFooter>
         </Card>
+        <div>
+          {users.map((data, index) => (
+            <div key={index}>
+              <div>{data.username}</div>
+              <div>{data.user_email}</div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
