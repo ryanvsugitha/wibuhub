@@ -5,7 +5,11 @@ const prisma = new PrismaClient();
 
 export async function GET() {
   try {
-    const users = await prisma.user_detail.findMany(); // Fetch all user details
+    const users = await prisma.user_detail.findUnique({
+      where: {
+        username: "123",
+      },
+    }); // Fetch all user details
     return NextResponse.json(users);
   } catch (error) {
     return NextResponse.json(
