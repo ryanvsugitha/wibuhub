@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Logo from "@/app/assets/wibuhub_logo.svg";
 import Link from "next/link";
-import { Input } from "@/components/ui/input";
 
 export default function NavBar() {
   return (
