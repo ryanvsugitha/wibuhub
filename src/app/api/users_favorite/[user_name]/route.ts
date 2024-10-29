@@ -3,13 +3,16 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-export async function GET() {
+export async function GET(
+  request: Request,
+  { params }: { params: { user_name: string } }
+) {
   try {
-    const users = await prisma.user_detail.findUnique({
+    const users = await prisma.user_favorite.findMany({
       where: {
-        username: "123",
+        user_name: params.user_name,
       },
-    }); // Fetch all user details
+    });
     return NextResponse.json(users);
   } catch (error) {
     return NextResponse.json(
@@ -17,6 +20,6 @@ export async function GET() {
       { status: 500 }
     );
   } finally {
-    await prisma.$disconnect(); // Close the connection
+    await prisma.$disconnect();
   }
 }
