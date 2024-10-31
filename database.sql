@@ -2,7 +2,7 @@
 -- Host:                         127.0.0.1
 -- Server version:               10.4.32-MariaDB - mariadb.org binary distribution
 -- Server OS:                    Win64
--- HeidiSQL Version:             12.8.0.6908
+-- HeidiSQL Version:             12.6.0.6765
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -25,10 +25,14 @@ CREATE TABLE IF NOT EXISTS `user_credential` (
   `user_name` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table wibuhub.user_credential: ~0 rows (approximately)
+-- Dumping data for table wibuhub.user_credential: ~2 rows (approximately)
 DELETE FROM `user_credential`;
+INSERT INTO `user_credential` (`id`, `user_name`, `password`) VALUES
+	(1, 'ryan_sugitha', 'ryan123'),
+	(2, 'ryansugitha', 'yourpassword'),
+	(3, 'jacob_sugitha', 'yourpassword');
 
 -- Dumping structure for table wibuhub.user_detail
 CREATE TABLE IF NOT EXISTS `user_detail` (
@@ -36,12 +40,14 @@ CREATE TABLE IF NOT EXISTS `user_detail` (
   `user_name` varchar(50) NOT NULL,
   `user_email` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table wibuhub.user_detail: ~1 rows (approximately)
+-- Dumping data for table wibuhub.user_detail: ~2 rows (approximately)
 DELETE FROM `user_detail`;
 INSERT INTO `user_detail` (`id`, `user_name`, `user_email`) VALUES
-	(1, 'ryan_sugitha', 'ryansugitha@gmail.com');
+	(1, 'ryan_sugitha', 'ryansugitha@gmail.com'),
+	(2, 'ryansugitha', 'testuser@example.com'),
+	(3, 'jacob_sugitha', 'jacob_sugitha@example.com');
 
 -- Dumping structure for table wibuhub.user_favorite
 CREATE TABLE IF NOT EXISTS `user_favorite` (
