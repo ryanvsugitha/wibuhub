@@ -2,18 +2,9 @@
 
 import { Skeleton } from "@/components/ui/skeleton";
 import React, { useEffect, useState } from "react";
+import { User, UserFavorite } from "../model/database";
 
-type User = {
-  id: number;
-  user_name: string;
-  user_email: string;
-};
 
-type UserFavorite = {
-  id: number;
-  user_name: string;
-  mal_id: string;
-};
 
 function TestPage() {
   const currentUser = "ryan_sugitha";

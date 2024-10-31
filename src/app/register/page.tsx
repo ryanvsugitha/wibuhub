@@ -32,10 +32,12 @@ export default function Register() {
   const [alertMessage, setAlertMessage] = useState("");
 
   const [inputUsername, setInputUsername] = useState("");
+  const [inputEmail, setInputEmail] = useState("");
   const [inputPassword, setInputPassword] = useState("");
   const [inputRePassword, setInputRePassword] = useState("");
 
   const [inputUsernameWarning, setInputUsernameWarning] = useState(false);
+  const [inputEmailWarning, setInputEmailWarning] = useState(false);
   const [inputPasswordWarning, setInputPasswordWarning] = useState(false);
   const [inputRePasswordWarning, setInputRePasswordWarning] = useState(false);
 
@@ -124,6 +126,22 @@ export default function Register() {
                       }`}
                     >
                       Username cannot be empty!
+                    </Label>
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <Label htmlFor="email">Email</Label>
+                    <Input
+                      placeholder="Email"
+                      onChange={(e) => setInputEmail(e.target.value)}
+                      className={inputEmailWarning ? "border-red-500" : ""}
+                    />
+                    <Label
+                      htmlFor="emailWarning"
+                      className={`text-red-500 ${
+                        inputEmailWarning ? "flex" : "hidden"
+                      }`}
+                    >
+                      Email cannot be empty!
                     </Label>
                   </div>
                   <div className="flex flex-col gap-1">
