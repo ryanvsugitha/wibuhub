@@ -16,12 +16,8 @@ export async function POST(request: Request) {
     });
 
     if (userExist.length == 0) {
-      const saltRounds = 10; // Higher values = slower hashing, but more secure
-      //   const hashedPassword = await bcrypt.hash(password, saltRounds);
-      bcrypt.hash(password, saltRounds).then(function (hash) {
-        // Store hash in your password DB.
-        console.log("password: " + password + "\n" + "hashed: " + hash);
-      });
+      const saltRounds = 10;
+      const hashedPassword = await bcrypt.hash(password, saltRounds);
 
       const registerUserDetail = await prisma.user_detail.create({
         data: {
@@ -33,41 +29,30 @@ export async function POST(request: Request) {
       const registerUserCredential = await prisma.user_credential.create({
         data: {
           user_name: user_name,
-          password: password,
+          password: hashedPassword,
         },
       });
 
-      if (
-        registerUserDetail &&
-        registerUserDetail.id &&
-        registerUserCredential &&
-        registerUserCredential.id
-      ) {
+      if (registerUserDetail.id && registerUserCredential.id) {
         return NextResponse.json({
           status: true,
-          message: "Register Succesful",
+          title: "Register Succesful!",
+          message: "You may log in",
         });
       } else {
         return NextResponse.json({
           status: false,
-          message: "Failed to register",
+          title: "Failed to register!",
+          message: "Please try again!",
         });
       }
     } else {
       return NextResponse.json({
         status: false,
+        title: "Failed to register!",
         message: "Username or Email already existed!",
       });
     }
-
-    // if (user) {
-    //   return NextResponse.json({ status: true, message: "Login Succesful" });
-    // } else {
-    //   return NextResponse.json({
-    //     status: false,
-    //     message: "Username doesn't match",
-    //   });
-    // }
   } catch (error) {
     return NextResponse.json(
       { error: "Failed to fetch users" },

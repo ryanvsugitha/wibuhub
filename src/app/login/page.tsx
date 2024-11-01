@@ -25,10 +25,12 @@ import {
 
 type Response = {
   status: boolean;
+  title: string;
   message: string;
 };
 
 export default function Login() {
+  const [alertTitle, setAlertTitle] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
 
   const [inputUsername, setInputUsername] = useState("");
@@ -62,13 +64,17 @@ export default function Login() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            username: inputUsername,
+            user_name: inputUsername,
             password: inputPassword,
           }),
         });
         const data: Response = await response.json();
         if (data.status) {
+          setAlertTitle(data.title);
+          setAlertMessage(data.message);
+          setOpenAlert(true);
         } else {
+          setAlertTitle(data.title);
           setAlertMessage(data.message);
           setOpenAlert(true);
         }
@@ -165,7 +171,7 @@ export default function Login() {
       </div>
       <AlertDialog open={openAlert}>
         <AlertDialogContent className="flex flex-col items-center">
-          <AlertDialogTitle>Failed to login</AlertDialogTitle>
+          <AlertDialogTitle>{alertTitle}</AlertDialogTitle>
           <AlertDialogDescription>{alertMessage}</AlertDialogDescription>
           <div>
             <AlertDialogAction onClick={() => setOpenAlert(false)}>

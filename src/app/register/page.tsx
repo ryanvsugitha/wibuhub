@@ -25,10 +25,17 @@ import {
 
 type Response = {
   status: boolean;
+  title: string;
   message: string;
 };
 
 export default function Register() {
+  const passwordWarning = [
+    "Password cannot be empty!",
+    "Password doesn't match!",
+  ];
+
+  const [alertTitle, setAlertTitle] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
 
   const [inputUsername, setInputUsername] = useState("");
@@ -41,54 +48,104 @@ export default function Register() {
   const [inputPasswordWarning, setInputPasswordWarning] = useState(false);
   const [inputRePasswordWarning, setInputRePasswordWarning] = useState(false);
 
+  const [currentPasswordWarning, setCurrentPasswordWarning] = useState(0);
+
   const [isLoginChecking, setIsLoginChecking] = useState(false);
 
   const [openAlert, setOpenAlert] = useState(false);
 
-  useEffect(() => {}, []);
+  function resetForm() {
+    setInputUsername("");
+    setInputEmail("");
+    setInputPassword("");
+    setInputRePassword("");
+  }
 
-  async function getRegisterData() {
+  function validateForm() {
     if (inputUsername == "") {
       setInputUsernameWarning(true);
+    } else {
+      setInputUsernameWarning(false);
+    }
+    if (inputEmail == "") {
+      setInputEmailWarning(true);
+    } else {
+      setInputEmailWarning(false);
     }
     if (inputPassword == "") {
       setInputPasswordWarning(true);
+      setCurrentPasswordWarning(0);
+    } else {
+      setInputPasswordWarning(false);
     }
     if (inputRePassword == "") {
       setInputRePasswordWarning(true);
+      setCurrentPasswordWarning(0);
+    } else {
+      setInputRePasswordWarning(false);
     }
-    if (inputRePassword == inputRePassword) {
+    if (
+      inputPassword != inputRePassword &&
+      inputPassword != "" &&
+      inputRePassword != ""
+    ) {
+      setInputPasswordWarning(true);
       setInputRePasswordWarning(true);
-    }
-    if (inputUsername != "" || inputPassword != "" || inputPassword != "") {
-      setInputUsernameWarning(false);
+      setCurrentPasswordWarning(1);
+    } else if (
+      inputPassword == inputRePassword &&
+      inputPassword != "" &&
+      inputRePassword != ""
+    ) {
       setInputPasswordWarning(false);
-      setIsLoginChecking(true);
+      setInputRePasswordWarning(false);
+    }
 
-      try {
-        const response = await fetch("/api/user_register", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: inputUsername,
-            password: inputPassword,
-          }),
-        });
-        const data: Response = await response.json();
-        if (data.status) {
-        } else {
-          setAlertMessage(data.message);
-          setOpenAlert(true);
-        }
-        setIsLoginChecking(false);
-      } catch (error) {
-        console.error("Failed to fetch users:", error);
-        setIsLoginChecking(false);
-      } finally {
-        setIsLoginChecking(false);
+    if (
+      inputUsername != "" &&
+      inputEmail != "" &&
+      inputPassword != "" &&
+      inputRePassword != "" &&
+      inputPassword == inputRePassword
+    ) {
+      getRegisterData();
+    }
+  }
+
+  async function getRegisterData() {
+    setInputUsernameWarning(false);
+    setInputPasswordWarning(false);
+    setIsLoginChecking(true);
+
+    try {
+      const response = await fetch("/api/user_register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user_name: inputUsername,
+          email: inputEmail,
+          password: inputPassword,
+        }),
+      });
+      const data: Response = await response.json();
+      if (data.status) {
+        setAlertTitle(data.title);
+        setAlertMessage(data.message);
+        resetForm();
+        setOpenAlert(true);
+      } else {
+        setAlertTitle(data.title);
+        setAlertMessage(data.message);
+        setOpenAlert(true);
       }
+      setIsLoginChecking(false);
+    } catch (error) {
+      console.error("Failed to fetch users:", error);
+      setIsLoginChecking(false);
+    } finally {
+      setIsLoginChecking(false);
     }
   }
 
@@ -116,6 +173,7 @@ export default function Register() {
                     <Label htmlFor="name">Username</Label>
                     <Input
                       placeholder="Username"
+                      value={inputUsername}
                       onChange={(e) => setInputUsername(e.target.value)}
                       className={inputUsernameWarning ? "border-red-500" : ""}
                     />
@@ -132,6 +190,7 @@ export default function Register() {
                     <Label htmlFor="email">Email</Label>
                     <Input
                       placeholder="Email"
+                      value={inputEmail}
                       onChange={(e) => setInputEmail(e.target.value)}
                       className={inputEmailWarning ? "border-red-500" : ""}
                     />
@@ -149,6 +208,7 @@ export default function Register() {
                     <Input
                       placeholder="Password"
                       type="password"
+                      value={inputPassword}
                       onChange={(e) => setInputPassword(e.target.value)}
                       className={inputPasswordWarning ? "border-red-500" : ""}
                     />
@@ -158,7 +218,7 @@ export default function Register() {
                         inputPasswordWarning ? "flex" : "hidden"
                       }`}
                     >
-                      Password cannot be empty!
+                      {passwordWarning[currentPasswordWarning]}
                     </Label>
                   </div>
                   <div className="flex flex-col gap-1">
@@ -166,7 +226,8 @@ export default function Register() {
                     <Input
                       placeholder="Reenter Password"
                       type="password"
-                      onChange={(e) => setInputPassword(e.target.value)}
+                      value={inputRePassword}
+                      onChange={(e) => setInputRePassword(e.target.value)}
                       className={inputRePasswordWarning ? "border-red-500" : ""}
                     />
                     <Label
@@ -175,7 +236,7 @@ export default function Register() {
                         inputRePasswordWarning ? "flex" : "hidden"
                       }`}
                     >
-                      Password cannot be empty!
+                      {passwordWarning[currentPasswordWarning]}
                     </Label>
                   </div>
                 </div>
@@ -206,7 +267,7 @@ export default function Register() {
       </div>
       <AlertDialog open={openAlert}>
         <AlertDialogContent className="flex flex-col items-center">
-          <AlertDialogTitle>Failed to Register</AlertDialogTitle>
+          <AlertDialogTitle>{alertTitle}</AlertDialogTitle>
           <AlertDialogDescription>{alertMessage}</AlertDialogDescription>
           <div>
             <AlertDialogAction onClick={() => setOpenAlert(false)}>
