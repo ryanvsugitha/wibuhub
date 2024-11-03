@@ -90,7 +90,7 @@ export default function Login() {
 
   return (
     <div className="w-full h-screen flex justify-center items-center">
-      <div className="p-5 sm:p-0 sm:w-[400px]">
+      <div className="p-5 sm:p-0 sm:w-[400px] z-50">
         <Card className="">
           <CardHeader>
             <CardTitle className="flex justify-center">
@@ -180,6 +180,105 @@ export default function Login() {
           </div>
         </AlertDialogContent>
       </AlertDialog>
+      <div className="overflow-hidden whitespace-nowrap z-0 top-0 absolute w-full">
+        <div className="flex items-center animate-scrollLeft">
+          <img
+            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
+            className="w-40 h-40 object-cover"
+            alt="Image 1"
+          />
+          <img
+            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
+            className="w-40 h-40 object-cover"
+            alt="Image 2"
+          />
+          <img
+            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
+            className="w-40 h-40 object-cover"
+            alt="Image 3"
+          />
+
+          <img
+            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
+            className="w-40 h-40 object-cover"
+            alt="Image 1"
+          />
+          <img
+            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
+            className="w-40 h-40 object-cover"
+            alt="Image 2"
+          />
+          <img
+            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
+            className="w-40 h-40 object-cover"
+            alt="Image 3"
+          />
+
+          <img
+            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
+            className="w-40 h-40 object-cover"
+            alt="Image 1"
+          />
+          <img
+            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
+            className="w-40 h-40 object-cover"
+            alt="Image 2"
+          />
+          <img
+            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
+            className="w-40 h-40 object-cover"
+            alt="Image 3"
+          />
+
+          <img
+            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
+            className="w-40 h-40 object-cover"
+            alt="Image 1"
+          />
+          <img
+            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
+            className="w-40 h-40 object-cover"
+            alt="Image 2"
+          />
+          <img
+            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
+            className="w-40 h-40 object-cover"
+            alt="Image 3"
+          />
+
+          <img
+            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
+            className="w-40 h-40 object-cover"
+            alt="Image 1"
+          />
+          <img
+            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
+            className="w-40 h-40 object-cover"
+            alt="Image 2"
+          />
+          <img
+            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
+            className="w-40 h-40 object-cover"
+            alt="Image 3"
+          />
+
+          <img
+            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
+            className="w-40 h-40 object-cover"
+            alt="Image 1"
+          />
+          <img
+            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
+            className="w-40 h-40 object-cover"
+            alt="Image 2"
+          />
+          <img
+            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
+            className="w-40 h-40 object-cover"
+            alt="Image 3"
+          />
+        </div>
+      </div>
     </div>
   );
 }

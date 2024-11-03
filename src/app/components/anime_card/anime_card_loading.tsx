@@ -7,7 +7,7 @@ import { StarIcon } from "@radix-ui/react-icons";
 
 const AnimeCardLoading = () => {
   return (
-    <Card className="h-full">
+    <div className="h-full box-shadow-data">
       <div className="flex flex-row h-full">
         <Skeleton className="w-[120px] h-[170px]"></Skeleton>
         <div className="flex flex-col overflow-hidden flex-grow h-full p-2 gap-1">
@@ -31,7 +31,7 @@ const AnimeCardLoading = () => {
           </div>
         </div>
       </div>
-    </Card>
+    </div>
   );
 };
 

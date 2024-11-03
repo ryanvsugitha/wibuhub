@@ -14,7 +14,7 @@ interface TopAnimeCardProps {
 const TopAnimeCard: React.FC<TopAnimeCardProps> = ({ item, index }) => {
   return (
     <Link href={"../../anime/" + item.mal_id}>
-      <Card className="hover:bg-violet-100 transition ease-in-out duration-300 h-full">
+      <div className="hover:bg-violet-100 transition ease-in-out duration-300 h-full box-shadow-data">
         <div className="flex flex-row items-center h-full">
           <p className="text-2xl font-bold px-6">{index + 1}</p>
           <Image
@@ -56,7 +56,7 @@ const TopAnimeCard: React.FC<TopAnimeCardProps> = ({ item, index }) => {
             {item.score ? item.score : "N/A"}
           </div>
         </div>
-      </Card>
+      </div>
     </Link>
   );
 };

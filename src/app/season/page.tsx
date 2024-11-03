@@ -18,6 +18,9 @@ import {
 import { SeasonListModel } from "../model/season_list_model";
 import { toast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
+import NavBar from "../components/navbar/navbar";
+import { Separator } from "@/components/ui/separator";
+import Footer from "../components/footer/footer";
 
 function Season() {
   const [is_first_load, set_first_load] = useState(true);
@@ -72,7 +75,7 @@ function Season() {
     async function fetch_season_data() {
       const res = await fetch("https://api.jikan.moe/v4/seasons");
 
-      const fetched_data = await res.json();
+      const fetched_data: SeasonListModel = await res.json();
       set_season_data(fetched_data);
     }
 
@@ -80,12 +83,12 @@ function Season() {
   }, []);
 
   useEffect(() => {
-    async function fetch_data() {
+    async function fetch_season_data() {
       const res = await fetch(is_custom_season ? season_url : season_now_url);
 
-      const fetched_data = await res.json();
+      const fetched_data: AnimeModel = await res.json();
       setData(fetched_data);
-      if (is_first_load) {
+      if (is_first_load && fetched_data.data) {
         set_last_page(fetched_data.pagination.last_visible_page);
         set_first_load(false);
       }
@@ -107,7 +110,8 @@ function Season() {
     });
 
     set_loaded(false);
-    fetch_data();
+    fetch_season_data();
+    console.log("test");
   }, [current_page, selected_season, selected_year]);
 
   function change_page(page_chosen: number) {
@@ -142,85 +146,97 @@ function Season() {
     set_custom_season(false);
   }
 
-  const loading_skeleton = [1, 2, 3];
+  const loading_skeleton = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   return (
-    <>
-      <div className="flex flex-row items-center justify-between p-3 w-full">
-        <p className="text-lg font-bold">
-          {is_custom_season
-            ? selected_season + " " + selected_year
-            : "Current Season"}
-        </p>
-        <div className="flex flex-row gap-3">
-          <Select onValueChange={change_season}>
-            <SelectTrigger className="w-[150px]">
-              <SelectValue placeholder="Select Season" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="Winter">Winter</SelectItem>
-              <SelectItem value="Spring">Spring</SelectItem>
-              <SelectItem value="Summer">Summer</SelectItem>
-              <SelectItem value="Fall">Fall</SelectItem>
-            </SelectContent>
-          </Select>
-          <Select onValueChange={change_year}>
-            <SelectTrigger className="w-[150px]">
-              <SelectValue placeholder="Select Year" />
-            </SelectTrigger>
-            <SelectContent>
-              {season_data.data.map((item, index) => (
-                <SelectItem key={index} value={item.year.toString()}>
-                  {item.year}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          <Button variant={"outline"} onClick={() => change_to_custom_season()}>
-            Go
+    <div className="flex flex-col gap-3 items-center w-full">
+      <NavBar />
+      <div className="flex flex-col gap-3 w-full max-w-screen-2xl px-5">
+        <div className="flex flex-row items-center justify-between w-full">
+          <p className="text-2xl font-bold">
+            {is_custom_season
+              ? selected_season + " " + selected_year
+              : "Current Season"}
+          </p>
+          <div className="flex flex-row gap-3">
+            <Select onValueChange={change_season}>
+              <SelectTrigger className="w-[150px]">
+                <SelectValue placeholder="Select Season" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Winter">Winter</SelectItem>
+                <SelectItem value="Spring">Spring</SelectItem>
+                <SelectItem value="Summer">Summer</SelectItem>
+                <SelectItem value="Fall">Fall</SelectItem>
+              </SelectContent>
+            </Select>
+            <Select onValueChange={change_year}>
+              <SelectTrigger className="w-[150px]">
+                <SelectValue placeholder="Select Year" />
+              </SelectTrigger>
+              <SelectContent>
+                {season_data.data ? (
+                  season_data.data.map((item, index) => (
+                    <SelectItem key={index} value={item.year.toString()}>
+                      {item.year}
+                    </SelectItem>
+                  ))
+                ) : (
+                  <SelectItem value={""}>Select Year</SelectItem>
+                )}
+              </SelectContent>
+            </Select>
+            <Button
+              variant={"outline"}
+              onClick={() => change_to_custom_season()}
+            >
+              Go
+            </Button>
+            <Button variant={"destructive"} onClick={() => change_to_now()}>
+              Reset
+            </Button>
+          </div>
+        </div>
+        <Separator />
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          {is_loaded && anime_data.data
+            ? anime_data.data.map((item, index) => (
+                <AnimeCard key={index} item={item} />
+              ))
+            : loading_skeleton.map((index) => <AnimeCardLoading key={index} />)}
+        </div>
+        <div className="flex flex-row justify-center items-center gap-5 w-full">
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => {
+              if (current_page != 1) {
+                change_page(current_page - 1);
+              }
+            }}
+            disabled={current_page == 1}
+          >
+            <ChevronLeftIcon className="h-4 w-4" />
           </Button>
-          <Button variant={"destructive"} onClick={() => change_to_now()}>
-            Reset
+          <p className="text-base">
+            {"Page " + current_page + " of " + last_page}
+          </p>
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => {
+              if (current_page != last_page) {
+                change_page(current_page + 1);
+              }
+            }}
+            disabled={current_page == last_page}
+          >
+            <ChevronRightIcon className="h-4 w-4" />
           </Button>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 p-3">
-        {is_loaded
-          ? anime_data.data.map((item, index) => (
-              <AnimeCard key={index} item={item} />
-            ))
-          : loading_skeleton.map((index) => <AnimeCardLoading key={index} />)}
-      </div>
-      <div className="flex flex-row justify-center items-center gap-5 w-full">
-        <Button
-          variant="outline"
-          size="icon"
-          onClick={() => {
-            if (current_page != 1) {
-              change_page(current_page - 1);
-            }
-          }}
-          disabled={current_page == 1}
-        >
-          <ChevronLeftIcon className="h-4 w-4" />
-        </Button>
-        <p className="text-base">
-          {"Page " + current_page + " of " + last_page}
-        </p>
-        <Button
-          variant="outline"
-          size="icon"
-          onClick={() => {
-            if (current_page != last_page) {
-              change_page(current_page + 1);
-            }
-          }}
-          disabled={current_page == last_page}
-        >
-          <ChevronRightIcon className="h-4 w-4" />
-        </Button>
-      </div>
-    </>
+      <Footer />
+    </div>
   );
 }
 

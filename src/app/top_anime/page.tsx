@@ -5,6 +5,7 @@ import { AnimeModel } from "../model/anime_model";
 import TopAnimeCard from "../components/anime_card/top_anime_card";
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
+import NavBar from "../components/navbar/navbar";
 
 function TopAnime() {
   const [is_first_load, set_first_load] = useState(true);
@@ -33,7 +34,7 @@ function TopAnime() {
         { cache: "no-cache" }
       );
       const fetched_data = await res.json();
-      if (is_first_load) {
+      if (is_first_load && fetched_data) {
         set_last_page(fetched_data.pagination.last_visible_page);
         set_first_load(false);
       }
@@ -41,19 +42,21 @@ function TopAnime() {
       set_loaded(true);
     }
 
-    setData({
-      pagination: {
-        last_visible_page: 0,
-        has_next_page: false,
-        current_page: 0,
-        items: {
-          count: 0,
-          total: 0,
-          per_page: 0,
+    if (is_first_load) {
+      setData({
+        pagination: {
+          last_visible_page: 0,
+          has_next_page: false,
+          current_page: 0,
+          items: {
+            count: 0,
+            total: 0,
+            per_page: 0,
+          },
         },
-      },
-      data: [],
-    });
+        data: [],
+      });
+    }
 
     set_loaded(false);
     fetch_data();
@@ -64,11 +67,12 @@ function TopAnime() {
   }
 
   return (
-    <>
-      <div className="flex flex-col gap-3 p-6">
-        <div className="text-2xl font-bold">Top Rated Anime</div>
+    <div className="flex flex-col gap-3 items-center w-full">
+      <NavBar />
+      <div className="flex flex-col gap-3 w-full max-w-screen-2xl px-5">
+        <p className="text-2xl font-bold w-full">Top Rated Anime</p>
         <div className="flex flex-col justify-center gap-3">
-          {is_loaded
+          {is_loaded && anime_data
             ? anime_data.data.map((item, index) => (
                 <TopAnimeCard
                   key={index}
@@ -111,7 +115,7 @@ function TopAnime() {
           </Button>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

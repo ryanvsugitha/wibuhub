@@ -27,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className="text-xs">
         <main>{children}</main>
         <Toaster />
       </body>

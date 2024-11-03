@@ -13,16 +13,17 @@ interface AnimeCardProps {
 const AnimeCard: React.FC<AnimeCardProps> = ({ item }) => {
   return (
     <Link href={"../../anime/" + item.mal_id}>
-      <Card className="hover:bg-violet-100 transition ease-in-out duration-300 h-full">
+      <div className="transition ease-in-out duration-300 h-40 box-shadow-data">
         <div className="flex flex-row h-full">
           <Image
-            className="rounded-lg"
+            className="rounded-s-[10px]"
             src={item.images.webp.image_url}
-            height={0}
+            height={160}
             width={120}
+            style={{ objectFit: "cover", minWidth: "120px" }}
             alt=""
           />
-          <div className="flex flex-col overflow-hidden flex-grow h-full p-2">
+          <div className="flex flex-col overflow-hidden h-full p-2">
             <p className="font-bold text-ellipsis truncate text-lg">
               {item.title_english}
             </p>
@@ -59,7 +60,7 @@ const AnimeCard: React.FC<AnimeCardProps> = ({ item }) => {
             </div>
           </div>
         </div>
-      </Card>
+      </div>
     </Link>
   );
 };

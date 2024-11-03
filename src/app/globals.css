@@ -76,3 +76,15 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.box-shadow-data{
+  border: 2px solid black;
+  border-radius: 12px;
+  box-shadow: 6px 6px;
+}
+
+.box-shadow-data:hover{
+  box-shadow: 3px 3px;
+  transform: translate(3px, 3px);
+  transition-duration: 250ms;
+}
