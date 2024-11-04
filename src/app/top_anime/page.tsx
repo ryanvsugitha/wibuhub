@@ -69,9 +69,9 @@ function TopAnime() {
   return (
     <div className="flex flex-col gap-3 items-center w-full">
       <NavBar />
-      <div className="flex flex-col gap-3 w-full max-w-screen-2xl px-5">
+      <div className="flex flex-col gap-3 w-full max-w-screen-xl px-5">
         <p className="text-2xl font-bold w-full">Top Rated Anime</p>
-        <div className="flex flex-col justify-center gap-3">
+        <div className="flex flex-col justify-center gap-5">
           {is_loaded && anime_data
             ? anime_data.data.map((item, index) => (
                 <TopAnimeCard

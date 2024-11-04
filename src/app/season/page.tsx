@@ -151,7 +151,7 @@ function Season() {
   return (
     <div className="flex flex-col gap-3 items-center w-full">
       <NavBar />
-      <div className="flex flex-col gap-3 w-full max-w-screen-2xl px-5">
+      <div className="flex flex-col gap-3 w-full max-w-screen-xl px-5">
         <div className="flex flex-row items-center justify-between w-full">
           <p className="text-2xl font-bold">
             {is_custom_season
