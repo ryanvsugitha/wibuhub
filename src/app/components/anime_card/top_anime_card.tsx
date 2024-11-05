@@ -12,8 +12,8 @@ interface TopAnimeCardProps {
 
 const TopAnimeCard: React.FC<TopAnimeCardProps> = ({ item, index }) => {
   return (
-    <Link href={"../../anime/" + item.mal_id}>
-      <div className="hover:bg-violet-100 transition ease-in-out duration-300 h-full box-shadow-data">
+    <Link href={"/anime/" + item.mal_id}>
+      <div className="transition ease-in-out duration-300 h-full box-shadow-data">
         <div className="flex flex-row items-center h-full">
           <p className="text-2xl font-bold px-6">{index + 1}</p>
           <Image
@@ -23,9 +23,9 @@ const TopAnimeCard: React.FC<TopAnimeCardProps> = ({ item, index }) => {
             width={80}
             alt=""
           />
-          <div className="flex flex-col overflow-hidden flex-grow h-full gap-1 p-2">
+          <div className="flex flex-col overflow-hidden flex-grow h-full p-1">
             <p className="font-bold text-ellipsis truncate text-lg">
-              {item.title_english}
+              {item.title}
             </p>
             <p className="text-gray-500 text-ellipsis truncate">
               {item.title_japanese}

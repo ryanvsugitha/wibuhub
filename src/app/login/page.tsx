@@ -180,103 +180,32 @@ export default function Login() {
           </div>
         </AlertDialogContent>
       </AlertDialog>
-      <div className="overflow-hidden whitespace-nowrap z-0 top-0 absolute w-full">
-        <div className="flex items-center animate-scrollLeft">
-          <img
-            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
-            className="w-40 h-40 object-cover"
-            alt="Image 1"
-          />
-          <img
-            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
-            className="w-40 h-40 object-cover"
-            alt="Image 2"
-          />
-          <img
-            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
-            className="w-40 h-40 object-cover"
-            alt="Image 3"
-          />
-
-          <img
-            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
-            className="w-40 h-40 object-cover"
-            alt="Image 1"
-          />
-          <img
-            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
-            className="w-40 h-40 object-cover"
-            alt="Image 2"
-          />
-          <img
-            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
-            className="w-40 h-40 object-cover"
-            alt="Image 3"
-          />
-
-          <img
-            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
-            className="w-40 h-40 object-cover"
-            alt="Image 1"
-          />
-          <img
-            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
-            className="w-40 h-40 object-cover"
-            alt="Image 2"
-          />
-          <img
-            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
-            className="w-40 h-40 object-cover"
-            alt="Image 3"
-          />
-
-          <img
-            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
-            className="w-40 h-40 object-cover"
-            alt="Image 1"
-          />
-          <img
-            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
-            className="w-40 h-40 object-cover"
-            alt="Image 2"
-          />
-          <img
-            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
-            className="w-40 h-40 object-cover"
-            alt="Image 3"
-          />
-
-          <img
-            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
-            className="w-40 h-40 object-cover"
-            alt="Image 1"
-          />
-          <img
-            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
-            className="w-40 h-40 object-cover"
-            alt="Image 2"
-          />
-          <img
-            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
-            className="w-40 h-40 object-cover"
-            alt="Image 3"
-          />
-
-          <img
-            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
-            className="w-40 h-40 object-cover"
-            alt="Image 1"
-          />
-          <img
-            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
-            className="w-40 h-40 object-cover"
-            alt="Image 2"
-          />
-          <img
-            src="https://cdn.myanimelist.net/images/anime/1015/138006.webp"
-            className="w-40 h-40 object-cover"
-            alt="Image 3"
-          />
+      <div className="whitespace-nowrap z-0 top-0 absolute w-full">
+        <div className="grid grid-cols-6 md:grid-cols-8 w-full h-screen">
+          <div className="bg-[url('https://cdn.myanimelist.net/images/anime/1015/138006.webp')] bg-cover h-full w-full"></div>
+          <div className="bg-[url('https://cdn.myanimelist.net/images/anime/1015/138006.webp')] bg-cover h-full w-full"></div>
+          <div className="bg-[url('https://cdn.myanimelist.net/images/anime/1015/138006.webp')] bg-cover h-full w-full"></div>
+          <div className="bg-[url('https://cdn.myanimelist.net/images/anime/1015/138006.webp')] bg-cover h-full w-full"></div>
+          <div className="bg-[url('https://cdn.myanimelist.net/images/anime/1015/138006.webp')] bg-cover h-full w-full"></div>
+          <div className="bg-[url('https://cdn.myanimelist.net/images/anime/1015/138006.webp')] bg-cover h-full w-full"></div>
+          <div className="bg-[url('https://cdn.myanimelist.net/images/anime/1015/138006.webp')] bg-cover h-full w-full"></div>
+          <div className="bg-[url('https://cdn.myanimelist.net/images/anime/1015/138006.webp')] bg-cover h-full w-full"></div>
+          <div className="bg-[url('https://cdn.myanimelist.net/images/anime/1015/138006.webp')] bg-cover h-full w-full"></div>
+          <div className="bg-[url('https://cdn.myanimelist.net/images/anime/1015/138006.webp')] bg-cover h-full w-full"></div>
+          <div className="bg-[url('https://cdn.myanimelist.net/images/anime/1015/138006.webp')] bg-cover h-full w-full"></div>
+          <div className="bg-[url('https://cdn.myanimelist.net/images/anime/1015/138006.webp')] bg-cover h-full w-full"></div>
+          <div className="bg-[url('https://cdn.myanimelist.net/images/anime/1015/138006.webp')] bg-cover h-full w-full"></div>
+          <div className="bg-[url('https://cdn.myanimelist.net/images/anime/1015/138006.webp')] bg-cover h-full w-full"></div>
+          <div className="bg-[url('https://cdn.myanimelist.net/images/anime/1015/138006.webp')] bg-cover h-full w-full"></div>
+          <div className="bg-[url('https://cdn.myanimelist.net/images/anime/1015/138006.webp')] bg-cover h-full w-full"></div>
+          <div className="bg-[url('https://cdn.myanimelist.net/images/anime/1015/138006.webp')] bg-cover h-full w-full"></div>
+          <div className="bg-[url('https://cdn.myanimelist.net/images/anime/1015/138006.webp')] bg-cover h-full w-full"></div>
+          <div className="bg-[url('https://cdn.myanimelist.net/images/anime/1015/138006.webp')] bg-cover h-full w-full"></div>
+          <div className="bg-[url('https://cdn.myanimelist.net/images/anime/1015/138006.webp')] bg-cover h-full w-full"></div>
+          <div className="bg-[url('https://cdn.myanimelist.net/images/anime/1015/138006.webp')] bg-cover h-full w-full"></div>
+          <div className="bg-[url('https://cdn.myanimelist.net/images/anime/1015/138006.webp')] bg-cover h-full w-full"></div>
+          <div className="bg-[url('https://cdn.myanimelist.net/images/anime/1015/138006.webp')] bg-cover h-full w-full"></div>
+          <div className="bg-[url('https://cdn.myanimelist.net/images/anime/1015/138006.webp')] bg-cover h-full w-full"></div>
         </div>
       </div>
     </div>
